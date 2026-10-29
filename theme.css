@@ -188,3 +188,10 @@ h1,h2,h3,.price,.price span,.cta-band p{font-weight:400!important;letter-spacing
 .hero h1{font-weight:400!important}
 body{font-weight:400!important}
 strong,b{font-weight:600}
+.footer-email{margin-top:10px}
+.footer-email a,.contact-email a{text-decoration:underline;text-underline-offset:3px}
+#contact .contact-email{color:#f1ece2;margin:-6px 0 22px}
+#contact .contact-email a{color:var(--champ)!important}
+.form-note{font-size:.88rem;color:#555b63!important;margin:4px 0 0}
+mark.placeholder{background:#fff1b8;color:#1c1f24;padding:0 4px}
+article.legal h2{font-size:1.25rem;margin:28px 0 8px}
