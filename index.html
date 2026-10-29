@@ -172,12 +172,12 @@ footer{background:#0f243c;color:#b9c5d4;padding:28px 0;font-size:14px;text-align
 <p class="lead">השאירו פרטים ונחזור אליכם לשיחת היכרות קצרה. מחיר כולל – 1,499 ₪.</p><p class="contact-email">דוא"ל ליצירת קשר: <a href="mailto:mithadshim@mail.grokbot.com">mithadshim@mail.grokbot.com</a></p>
 <!-- טופס הלידים: ראו FORM_ENDPOINT בסקריפט בתחתית הדף -->
 <p style="font-size:15px;color:#5b6675">שדות המסומנים ב-* הם שדות חובה.</p>
-<form id="lead" aria-label="טופס יצירת קשר" novalidate action="https://formsubmit.co/mithadshim@mail.grokbot.com" method="POST">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_next" value="https://guymaman127-droid.github.io/mithadshim/thanks.html">
-<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="השאירו ריק">
-<input type="hidden" name="_subject" value="ליד חדש - מתחדשים נכון">
+<form id="lead" aria-label="טופס יצירת קשר" novalidate action="https://api.web3forms.com/submit" method="POST">
+<input type="hidden" name="access_key" value="dad6af55-90a9-4724-b3e6-ce9c1af171e4">
+<input type="hidden" name="subject" value="ליד חדש – מתחדשים נכון">
+<input type="hidden" name="from_name" value="מתחדשים נכון">
+<input type="hidden" name="redirect" value="https://guymaman127-droid.github.io/mithadshim/thanks.html">
+<input type="checkbox" name="botcheck" class="hp" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 <div><label for="name">שם מלא *</label><input id="name" name="name" required aria-required="true" aria-describedby="err" autocomplete="name"></div>
 <div><label for="phone">טלפון *</label><input id="phone" name="phone" type="tel" required inputmode="tel" autocomplete="tel" pattern="0[0-9\-\s]{8,11}"></div>
 <div><label for="city">עיר *</label><input id="city" name="city" required aria-required="true" aria-describedby="err"></div>
@@ -195,15 +195,10 @@ footer{background:#0f243c;color:#b9c5d4;padding:28px 0;font-size:14px;text-align
 <footer class="site-footer"><nav aria-label="מדריכים"><a href="guides.html">כל המדריכים</a> · <a href="which-floor.html">איזו קומה לבחור</a> · <a href="orientation-sun.html">כיווני אוויר וחשיפה לשמש</a> · <a href="what-do-i-get.html">דירת תמורה – מה מגיע לי</a> · <a href="read-floor-plan.html">איך לקרוא תכנית דירה ומפרט</a> · <a href="parking-storage.html">חניה ומחסן בפינוי בינוי</a> · <a href="common-mistakes.html">טעויות נפוצות בבחירת דירה</a></nav>© מתחדשים נכון · ייעוץ אישי ובלתי תלוי בבחירת דירת תמורה<br><nav class="legal-links" aria-label="מסמכים משפטיים"><a href="accessibility.html">הצהרת נגישות</a> · <a href="terms.html">תקנון</a> · <a href="privacy.html">מדיניות פרטיות</a></nav><p class="credits">צילומים: Carlos Montelara ו-Max Vakhtbovych via Pexels</p><p class="footer-email">דוא"ל ליצירת קשר: <a href="mailto:mithadshim@mail.grokbot.com">mithadshim@mail.grokbot.com</a></p></footer>
 <script>
 /* ===================== FORM_ENDPOINT =====================
- * לאן נשלחים הלידים. ריק = מצב בדיקה (רק console.log + הודעת תודה).
- * אפשרות א' – FormSubmit (לא צריך שרת ולא הרשמה, רק כתובת מייל):
- *   'https://formsubmit.co/ajax/YOUR_EMAIL@example.com'
- *   בשליחה הראשונה יישלח למייל קישור אישור חד-פעמי; אחרי האישור אפשר להחליף
- *   את המייל במזהה האקראי ש-FormSubmit שולח, כדי לא לחשוף את הכתובת בקוד.
- * אפשרות ב' – Formspree (דורש הרשמה חינמית, מכסה חודשית מוגבלת):
- *   'https://formspree.io/f/XXXXXXX'
+ * הלידים נשלחים דרך Web3Forms לתיבה mithadshim@mail.grokbot.com.
+ * מפתח הגישה (access_key) נמצא בשדה המוסתר בטופס – הוא ציבורי מטבעו.
  * ========================================================= */
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/mithadshim@mail.grokbot.com';
+const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
 
 document.getElementById('lead').addEventListener('submit',async function(e){
   e.preventDefault();
@@ -211,14 +206,15 @@ document.getElementById('lead').addEventListener('submit',async function(e){
   err.textContent='';
   if(!f.checkValidity()){err.textContent='נא למלא שם, טלפון תקין ועיר, ולאשר את מדיניות הפרטיות.';f.reportValidity();return;}
   var data=Object.fromEntries(new FormData(f));
-  if(data._honey) return;
+  if(data.botcheck) return;
   data.consent='כן';data.ts=new Date().toISOString();
   console.log('Lead:',data);
   if(FORM_ENDPOINT){
     btn.disabled=true;btn.textContent='שולח...';
     try{
       var r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
-      if(!r.ok) throw new Error(r.status);
+      var j=await r.json().catch(function(){return {};});
+      if(!r.ok||!j.success) throw new Error(r.status);
     }catch(x){btn.disabled=false;btn.textContent='שלחו פרטים';err.textContent='אירעה שגיאה בשליחה. נא לנסות שוב.';return;}
   }
   f.style.display='none';var th=document.getElementById('thanks');th.style.display='block';th.focus();
