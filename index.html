@@ -86,10 +86,13 @@ footer a{color:#e6c88e}
 footer{background:#0f243c;color:#b9c5d4;padding:28px 0;font-size:14px;text-align:center}
 @media(max-width:640px){form{grid-template-columns:1fr;padding:20px}section{padding:48px 0}.hero{padding:48px 0 56px}.hero .btn{width:100%;text-align:center}.top a.btn{display:none}}
 </style>
+<link rel="stylesheet" href="a11y.css">
 </head>
 <body>
+<a class="skip-link" href="#main">דילוג לתוכן הראשי</a>
 <header class="top"><div class="wrap"><div class="logo">מתחדשים <span>נכון</span></div><a class="btn" href="#contact">לבדיקת התאמה</a></div></header>
 
+<main id="main" tabindex="-1">
 <section class="hero"><div class="wrap">
 <p class="pill">ייעוץ וליווי אישי בבחירת דירת התמורה שלכם</p>
 <h1>בוחרים דירת תמורה?<br><em>תגיעו לישיבת הבחירה עם תוכנית.</em></h1>
@@ -158,26 +161,28 @@ footer{background:#0f243c;color:#b9c5d4;padding:28px 0;font-size:14px;text-align
 <h2>בואו נבדוק התאמה</h2>
 <p class="lead">השאירו פרטים ונחזור אליכם לשיחת היכרות קצרה.</p>
 <!-- טופס הלידים: ראו FORM_ENDPOINT בסקריפט בתחתית הדף -->
-<form id="lead" novalidate action="https://formsubmit.co/mithadshim@mail.grokbot.com" method="POST">
+<p style="font-size:15px;color:#5b6675">שדות המסומנים ב-* הם שדות חובה.</p>
+<form id="lead" aria-label="טופס יצירת קשר" novalidate action="https://formsubmit.co/mithadshim@mail.grokbot.com" method="POST">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_next" value="https://guymaman127-droid.github.io/mithadshim/thanks.html">
-<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="השאירו ריק">
 <input type="hidden" name="_subject" value="ליד חדש - מתחדשים נכון">
-<div><label for="name">שם מלא *</label><input id="name" name="name" required autocomplete="name"></div>
+<div><label for="name">שם מלא *</label><input id="name" name="name" required aria-required="true" aria-describedby="err" autocomplete="name"></div>
 <div><label for="phone">טלפון *</label><input id="phone" name="phone" type="tel" required inputmode="tel" autocomplete="tel" pattern="0[0-9\-\s]{8,11}"></div>
-<div><label for="city">עיר *</label><input id="city" name="city" required></div>
+<div><label for="city">עיר *</label><input id="city" name="city" required aria-required="true" aria-describedby="err"></div>
 <div><label for="project">שם הפרויקט / כתובת</label><input id="project" name="project"></div>
 <div class="full"><label for="stage">שלב הפרויקט</label><select id="stage" name="stage">
 <option value="">בחרו שלב</option><option>לפני חתימה / התארגנות</option><option>אחרי חתימה, לפני היתר</option><option>יש היתר / תוכניות דירות פורסמו</option><option>נקבע מועד ישיבת בחירה</option><option>לא בטוח/ה</option></select></div>
 <div class="full"><label for="notes">הערות (מקום בתור, מועד הבחירה, צרכים מיוחדים)</label><textarea id="notes" name="notes" rows="3"></textarea></div>
-<div class="full consent"><input type="checkbox" id="consent" required><label for="consent" style="font-weight:400;margin:0">אני מאשר/ת ש-מתחדשים נכון ישמור את הפרטים שמסרתי וישתמש בהם לצורך יצירת קשר בנוגע לפנייתי, בהתאם לחוק הגנת הפרטיות, התשמ"א-1981. מסירת הפרטים אינה חובה על פי חוק, אך בלעדיה לא נוכל לחזור אליך. ניתן לבקש לעיין בפרטים, לתקנם או למחוק אותם בכל עת.</label></div>
-<div class="full formrow"><button class="btn" type="submit">שלחו פרטים</button><span id="err" style="color:#b42318;font-size:15px"></span></div>
+<div class="full consent"><input type="checkbox" id="consent" required aria-required="true"><label for="consent" style="font-weight:400;margin:0">אני מאשר/ת ש-מתחדשים נכון ישמור את הפרטים שמסרתי וישתמש בהם לצורך יצירת קשר בנוגע לפנייתי, בהתאם לחוק הגנת הפרטיות, התשמ"א-1981. מסירת הפרטים אינה חובה על פי חוק, אך בלעדיה לא נוכל לחזור אליך. ניתן לבקש לעיין בפרטים, לתקנם או למחוק אותם בכל עת. קראתי את <a href="privacy.html">מדיניות הפרטיות</a> ואת <a href="terms.html">התקנון</a>.</label></div>
+<div class="full formrow"><button class="btn" type="submit">שלחו פרטים</button><span id="err" role="alert" aria-live="assertive" style="color:#b42318;font-size:15px"></span></div>
 </form>
-<div class="thanks" id="thanks"><h3>תודה! הפרטים התקבלו</h3><p>נחזור אליכם בהקדם לשיחת היכרות.</p></div>
+<div class="thanks" id="thanks" role="status" aria-live="polite" tabindex="-1"><h3>תודה! הפרטים התקבלו</h3><p>נחזור אליכם בהקדם לשיחת היכרות.</p></div>
 </div></section>
 
-<footer><div class="wrap"><nav style="margin-bottom:8px"><a href="how-to-choose.html">איך בוחרים דירת תמורה</a> · <a href="selection-order.html">סדר בחירת הדירות</a> · <a href="selection-day.html">הכנה ליום הבחירה</a></nav>© מתחדשים נכון · ייעוץ אישי ובלתי תלוי בבחירת דירת תמורה<br>האתר אינו מייצג יזם, חברה או גוף מטעם הפרויקט. המידע באתר כללי ואינו מהווה ייעוץ משפטי או שמאי.</div></footer>
+</main>
+<footer class="site-footer"><nav aria-label="מדריכים"><a href="how-to-choose.html">איך בוחרים דירת תמורה</a> · <a href="selection-order.html">סדר בחירת הדירות</a> · <a href="selection-day.html">הכנה ליום הבחירה</a></nav>© מתחדשים נכון · ייעוץ אישי ובלתי תלוי בבחירת דירת תמורה<br><nav class="legal-links" aria-label="מסמכים משפטיים"><a href="accessibility.html">הצהרת נגישות</a> · <a href="terms.html">תקנון</a> · <a href="privacy.html">מדיניות פרטיות</a></nav><br>האתר אינו מייצג יזם, חברה או גוף מטעם הפרויקט. המידע באתר כללי ואינו מהווה ייעוץ משפטי או שמאי.</footer>
 
 <script>
 /* ===================== FORM_ENDPOINT =====================
@@ -207,8 +212,9 @@ document.getElementById('lead').addEventListener('submit',async function(e){
       if(!r.ok) throw new Error(r.status);
     }catch(x){btn.disabled=false;btn.textContent='שלחו פרטים';err.textContent='אירעה שגיאה בשליחה. נא לנסות שוב.';return;}
   }
-  f.style.display='none';document.getElementById('thanks').style.display='block';
+  f.style.display='none';var th=document.getElementById('thanks');th.style.display='block';th.focus();
 });
 </script>
+<script src="a11y.js" defer></script>
 </body>
 </html>
