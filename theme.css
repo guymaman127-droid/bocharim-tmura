@@ -1,4 +1,4 @@
-/* מתחדשים נכון – Luxury theme. Fonts: Fredoka (headings) + Varela Round (body). Photos: Pexels (Pexels License), see comments in index.html */
+/* בוחרים תמורה – Luxury theme. Fonts: Fredoka (headings) + Varela Round (body). Photos: Pexels (Pexels License), see comments in index.html */
 :root{--ink:#1c1f24;--char:#23272e;--navy:#1e2a3a;--muted:#555b63;--ivory:#f8f5ef;--ivory2:#f1ece2;--paper:#fffdf9;--line:#e3dccd;--gold:#9c7a3c;--gold-l:#c9ad7a;--champ:#e9dcc0;--gold-text:#7d6130;--bg:#f8f5ef;--text:#1c1f24;--card:#fffdf9}
 html{scroll-behavior:smooth}
 body{font-family:"Varela Round","Assistant",Arial,sans-serif!important;font-weight:300;background:var(--ivory)!important;color:var(--ink)!important;font-size:17.5px;line-height:1.8!important}

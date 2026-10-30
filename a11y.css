@@ -1,4 +1,4 @@
-/* נגישות – מתחדשים נכון (ללא סקריפטים של צד שלישי) */
+/* נגישות – בוחרים תמורה (ללא סקריפטים של צד שלישי) */
 .skip-link{position:absolute;right:12px;top:-60px;background:#14304f;color:#fff!important;padding:10px 18px;border-radius:8px;z-index:1000;font-weight:700;text-decoration:none}
 .skip-link:focus{top:12px}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #0b63ce!important;outline-offset:2px;box-shadow:0 0 0 5px #fff}
