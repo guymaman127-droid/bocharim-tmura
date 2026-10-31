@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /thanks.html
 
-Sitemap: https://guymaman127-droid.github.io/mithadshim/sitemap.xml
+Sitemap: https://guymaman127-droid.github.io/bocharim-tmura/sitemap.xml
